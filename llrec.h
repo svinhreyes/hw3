@@ -83,6 +83,23 @@ Node* llfilter(Node* head, Comp pred)
     //*********************************************
     // Provide your implementation below
     //*********************************************
+  //base case: empty list
+  if(head == NULL){
+    return NULL;
+  }
+
+  //recursively filter the rest of the list
+  head->next = llfilter(head->next, pred);
+
+  //check whether the current node should be removed
+  if(pred(head->val)){
+    Node* nextNode = head->next;
+    delete head;
+    return nextNode;
+  }
+
+  //keep the current node
+  return head;
 
 
 }
